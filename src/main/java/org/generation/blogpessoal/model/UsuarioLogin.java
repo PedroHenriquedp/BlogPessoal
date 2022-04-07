@@ -7,12 +7,12 @@ public class UsuarioLogin {
 	private Long id;
 	private String nome;
 	private String senha;
-	private String email;
+	private String usuario;
 	private String foto;
 	private String token;
 	
 	//---------------GETTERS AND SETTERS----------------
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -31,11 +31,11 @@ public class UsuarioLogin {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getEmail() {
-		return email;
+	public String getUsuario() {
+		return usuario;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	public String getFoto() {
 		return foto;
@@ -50,5 +50,4 @@ public class UsuarioLogin {
 		this.token = token;
 	}
 
-	
 }

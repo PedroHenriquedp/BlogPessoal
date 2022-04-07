@@ -16,7 +16,7 @@ public class UserDetailsImpl implements UserDetails{
 	
 	public UserDetailsImpl(Usuario usuario) {
 		
-		userName = usuario.getEmail();
+		userName = usuario.getUsuario();
 		password = usuario.getSenha();	
 	}
 	
@@ -49,10 +49,8 @@ public class UserDetailsImpl implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

@@ -3,6 +3,7 @@ package org.generation.blogpessoal.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,18 +38,15 @@ public class Postagem {
 	private LocalDateTime data;
 	
 	//FOREIGN KEY
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-	//------------------GETTERS AND SETTERS--------------
 	
-	public Tema getTema() {
-		return tema;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	//------------------GETTERS AND SETTERS--------------
 
-	public void setTema(Tema tema) {
-		this.tema = tema;
-	}	
 	public Long getId() {
 		return id;
 	}
@@ -80,5 +78,20 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }

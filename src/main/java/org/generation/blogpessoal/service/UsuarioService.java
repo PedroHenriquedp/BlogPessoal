@@ -22,21 +22,20 @@ public class UsuarioService {
 	
 	public Optional<Usuario>cadastrarUsuario(Usuario usuario){
 			
-		if(usuarioRepository.findByUsuario(usuario.getEmail()).isPresent()){
+		if(usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent()){
 			return Optional.empty();
 		} 
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
 			return Optional.of(usuarioRepository.save(usuario));
 	}
 	public  Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin){
-		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getEmail());
+		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 			if(usuario.isPresent()) {
 				if(compararSenhas(usuarioLogin.get().getSenha(), usuario.get().getSenha())) {
 					usuarioLogin.get().setId(usuario.get().getId());
 					usuarioLogin.get().setNome(usuario.get().getNome());
 					usuarioLogin.get().setFoto(usuario.get().getFoto());
-					usuarioLogin.get().setToken(geradorBasicToken(usuarioLogin.get().getEmail(), usuarioLogin.get().getSenha()));
-					usuarioLogin.get().setEmail(usuario.get().getEmail());
+					usuarioLogin.get().setToken(geradorBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 					usuarioLogin.get().setSenha(usuario.get().getSenha());
 			
 					return usuarioLogin;
@@ -48,11 +47,11 @@ public class UsuarioService {
 	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
 
 		if (usuarioRepository.findById(usuario.getId()).isPresent()) {
-			Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(usuario.getEmail());
+			Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
 
 			if (buscaUsuario.isPresent()) {				
 				if (buscaUsuario.get().getId() != usuario.getId())
-					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Email já foi cadastrado", null);
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Usuario já foi cadastrado", null);
 			}
 			
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
@@ -60,7 +59,7 @@ public class UsuarioService {
 			return Optional.of(usuarioRepository.save(usuario));
 		} 
 			
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email não foi encontrado", null);		
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não foi encontrado", null);		
 	}	
 	
 	
@@ -77,7 +76,7 @@ public class UsuarioService {
 	private String geradorBasicToken(String usuario, String senha) {
 		String token = usuario + ":" + senha;
 		byte[] tokenBase64 = Base64.encodeBase64(token.getBytes(Charset.forName("US-ASCII")));
-			return "Basic " + new String(tokenBase64);
+			return "Basic "+new String(tokenBase64);
  	}
 	
 	

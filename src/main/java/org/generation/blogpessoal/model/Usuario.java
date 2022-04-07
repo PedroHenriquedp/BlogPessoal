@@ -25,17 +25,17 @@ public class Usuario {
 	private Long id;
 	private String nome;
 	@Email
-	private String email;
+	private String usuario;
 	@NotNull
 	private String senha;
 	private String foto;
-	
+		
 	@OneToMany(mappedBy ="usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem>postagens;
 	
 	//---------------GETTERS AND SETTERS----------------
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,12 +52,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getSenha() {
@@ -83,5 +83,4 @@ public class Usuario {
 	public void setPostagens(List<Postagem> postagens) {
 		this.postagens = postagens;
 	}
-	
 }
