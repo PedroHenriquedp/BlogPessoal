@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -19,14 +19,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Usuario {
 
 	//------------------ATRIBUTOS------------------
+	//ID
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	@Email
 	private String usuario;
-	@NotNull
+	@NotBlank
 	private String senha;
 	private String foto;
 		
@@ -34,8 +36,19 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem>postagens;
 	
-	//---------------GETTERS AND SETTERS----------------
+	//---------------MÉTODOS CONSTRUTORES----------------
+	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
 	
+	//DAR LIBERDADE PARA TESTARMOS O QUE QUISERMOS: CONSTRUTOR VÁZIO!!!
+	public Usuario() {}
+	//---------------GETTERS AND SETTERS-----------------
+
 	public Long getId() {
 		return id;
 	}
@@ -83,4 +96,5 @@ public class Usuario {
 	public void setPostagens(List<Postagem> postagens) {
 		this.postagens = postagens;
 	}
+	
 }

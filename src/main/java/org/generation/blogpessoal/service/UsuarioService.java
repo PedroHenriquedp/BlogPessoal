@@ -63,9 +63,9 @@ public class UsuarioService {
 	}	
 	
 	
-	private boolean compararSenhas(String senhaDigitada, String senhaDoServidor) {
+	private boolean compararSenhas(String senhaDigitada, String senhaDoBanco) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			return encoder.matches(senhaDigitada, senhaDoServidor);
+			return encoder.matches(senhaDigitada, senhaDoBanco);
 			}
 	//criptografarSenha = pode ser qualquer nome
 	private String criptografarSenha(String senha) {
