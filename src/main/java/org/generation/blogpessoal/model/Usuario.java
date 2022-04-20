@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name="tb_usuario")
 public class Usuario {
@@ -23,15 +25,25 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	//NOME
 	@NotBlank
 	private String nome;
-	@NotBlank
-	@Email
+	
+	//USUÁRIO
+	@Schema(example = "JoseMaria@gmail.com")
+	@NotBlank(message = "O campo é obrigatório. Insira um email válido!!!")
+	@Email(message = "Insira um email válido!!!")
 	private String usuario;
+	
+	//SENHA
 	@NotBlank
 	private String senha;
+	
+	//FOTO
 	private String foto;
-		
+
+	//FOREIGN KEY
 	@OneToMany(mappedBy ="usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem>postagens;

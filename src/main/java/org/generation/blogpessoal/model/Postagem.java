@@ -21,19 +21,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="tb_postagens")
 public class Postagem {
 
-	//ATRIBUTOS
+	//------------------ATRIBUTOS------------------
+	//ID
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
+	//TÍTULO
 	@NotNull
 	@NotBlank
 	private String titulo;
 	
+	//TEXTO
 	@NotNull
 	@Size(min=20, max=400)
 	private String texto;
 	
+	//DATA
 	@UpdateTimestamp
 	private LocalDateTime data;
 	

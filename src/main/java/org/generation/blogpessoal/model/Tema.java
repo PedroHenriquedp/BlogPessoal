@@ -16,11 +16,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "tb_tema")
 public class Tema {
 
-	//ATRIBUTOS
+	//------------------ATRIBUTOS------------------
+	//ID
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	//CATEGORIA
 	private String categoria;
+	
+	//DESCRIÇÃO
 	private String descricao;
 	
 	//FOREIGN KEY
