@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario"
+		+ "s")
 @CrossOrigin(origins="*", allowedHeaders="*")
 public class UsuarioController {
 

@@ -42,6 +42,10 @@ public class Usuario {
 	
 	//FOTO
 	private String foto;
+	
+	//TIPO
+	private String tipo;
+
 
 	//FOREIGN KEY
 	@OneToMany(mappedBy ="usuario", cascade = CascadeType.REMOVE)
@@ -108,5 +112,13 @@ public class Usuario {
 	public void setPostagens(List<Postagem> postagens) {
 		this.postagens = postagens;
 	}
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	
 }
